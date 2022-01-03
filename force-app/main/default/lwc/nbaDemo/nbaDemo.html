@@ -14,36 +14,27 @@
                 <div class="slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3"></div>
             </header>
         </div>
-        <div class="slds-card__body slds-card__body_inner">
-            <div class="slds-box">
-                <span class="slds-align_absolute-center">
-                    <img src={imgSrc} style="height:150px" />
-                </span>
-                <p class="slds-p-around_small">{body}</p>
-                <lightning-button label={button1Label} class="slds-p-around_xxx-small slds-align_absolute-center">
-                </lightning-button>
-                <template if:true={button2Label}>
-                    <lightning-button label={button2Label} variant="base"
-                        class="slds-p-around_xxx-small slds-align_absolute-center"></lightning-button>
+        <div class="slds-card__body slds-card__body_inner"
+            ontransitionend={handleTransitionEnd}>
+            <div class="slds-align_absolute-center slds-p-around_x-small" if:true={imgSrc}>
+                <img src={imgSrc} style="height:150px" />
+            </div>
+            <div>
+                <h3 class="slds-p-around_x-small slds-text-heading_small">{header}</h3>
+                <p class="slds-p-around_x-small">{body}</p>
+                <template if:false={isClicked}>
+                    <lightning-button label={button1Label} class="slds-p-around_xxx-small slds-align_absolute-center"
+                        onclick={handleAcceptButtonClick}>
+                    </lightning-button>
+                    <template if:true={button2Label}>
+                        <lightning-button label={button2Label} variant="base"
+                            class="slds-p-around_xxx-small slds-align_absolute-center"></lightning-button>
+                    </template>
+                </template>
+                <template if:true={isClicked}>
+                    <p class="slds-align_absolute-center">Accepted</p>
                 </template>
             </div>
-            <!-- <div class="slds-media">
-                <div class="slds-media__figure">
-                  <span style="height:150px" class="slds-align_absolute-center">
-                    <img src={imgSrc}/>
-                  </span>
-                </div>
-                <div class="slds-media__body">
-                  <p>{body}</p>
-                </div>
-              </div>
-              <template if:true={button1Label}>
-                  <lightning-button label={button1Label} class="slds-p-around_xxx-small"></lightning-button>
-              </template>
-              <template if:true={button2Label}>
-                <lightning-button label={button2Label} class="slds-p-around_xxx-small"></lightning-button>
-            </template> -->
         </div>
     </article>
-
 </template>
